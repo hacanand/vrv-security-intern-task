@@ -103,7 +103,7 @@ const RoleManagement = () => {
       {isModalOpen && (
         <RoleModal
           role={editingRole}
-          // @ts-expect-error
+           
           onSave={editingRole ? handleEditRole : handleAddRole}
           onClose={() => {
             setIsModalOpen(false);
@@ -117,7 +117,7 @@ const RoleManagement = () => {
 
 interface RoleModalProps {
   role: Role | null
-  onSave: (role: Role | Omit<Role, 'id'>) => void
+  onSave: (role: Role) => void
   onClose: () => void
 }
 
@@ -128,7 +128,7 @@ const RoleModal: React.FC<RoleModalProps> = ({ role, onSave, onClose }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    onSave(role ? { ...role, name, description, permissions } : { name, description, permissions })
+    onSave(role ? { ...role, name, description, permissions } : { id: roles.length + 1, name, description, permissions })
   }
 
   const togglePermission = (permission: string) => {
