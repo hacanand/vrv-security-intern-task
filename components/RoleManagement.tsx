@@ -128,7 +128,7 @@ const RoleModal: React.FC<RoleModalProps> = ({ role, onSave, onClose }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    onSave(role ? { ...role, name, description, permissions } : { id: roles.length + 1, name, description, permissions })
+    onSave(role ? { ...role, name, description, permissions } : { id: Date.now(), name, description, permissions })
   }
 
   const togglePermission = (permission: string) => {

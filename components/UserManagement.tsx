@@ -107,7 +107,7 @@ const UserManagement = () => {
       {isModalOpen && (
         <UserModal
           user={editingUser}
-          // @ts-expect-error
+
           onSave={editingUser ? handleEditUser : handleAddUser}
           onClose={() => {
             setIsModalOpen(false);
@@ -121,7 +121,7 @@ const UserManagement = () => {
 
 interface UserModalProps {
   user: User | null
-  onSave: (user: User | Omit<User, 'id'>) => void
+  onSave: (user: User) => void
   onClose: () => void
 }
 
@@ -133,7 +133,7 @@ const UserModal: React.FC<UserModalProps> = ({ user, onSave, onClose }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    onSave(user ? { ...user, name, email, role, status } : { name, email, role, status })
+    onSave(user ? { ...user, name, email, role, status } : { id: Date.now(), name, email, role, status })
   }
 
   return (

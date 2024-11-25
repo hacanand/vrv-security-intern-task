@@ -141,10 +141,14 @@ const PermissionManagement = () => {
       {isModalOpen && (
         <PermissionModal
           permission={editingPermission}
-          //@ts-expect-error
-          onSave={
-            editingPermission ? handleEditPermission : handleAddPermission
-          }
+           
+          onSave={(permission) => {
+            if (editingPermission) {
+              handleEditPermission(permission as Permission);
+            } else {
+              handleAddPermission(permission as Omit<Permission, "id">);
+            }
+          }}
           onClose={() => {
             setIsModalOpen(false);
             setEditingPermission(null);
