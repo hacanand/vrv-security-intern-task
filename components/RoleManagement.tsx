@@ -58,12 +58,17 @@ const RoleManagement = () => {
           </tr>
         </thead>
         <tbody className="text-gray-600 text-sm font-light">
-          {roles.map(role => (
-            <tr key={role.id} className="border-b border-gray-200 hover:bg-gray-100">
-              <td className="py-3 px-6 text-left whitespace-nowrap">{role.name}</td>
-<td className="py-3 px-6 text-left">{role.description}</td>
+          {roles.map((role) => (
+            <tr
+              key={role.id}
+              className="border-b border-gray-200 hover:bg-gray-100"
+            >
+              <td className="py-3 px-6 text-left whitespace-nowrap">
+                {role.name}
+              </td>
+              <td className="py-3 px-6 text-left">{role.description}</td>
               <td className="py-3 px-6 text-left">
-                {role.permissions.map(permission => (
+                {role.permissions.map((permission) => (
                   <span
                     key={permission}
                     className="bg-blue-200 text-blue-600 py-1 px-3 rounded-full text-xs mr-2"
@@ -77,8 +82,8 @@ const RoleManagement = () => {
                   <button
                     className="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
                     onClick={() => {
-                      setEditingRole(role)
-                      setIsModalOpen(true)
+                      setEditingRole(role);
+                      setIsModalOpen(true);
                     }}
                   >
                     <PencilIcon size={16} />
@@ -98,16 +103,16 @@ const RoleManagement = () => {
       {isModalOpen && (
         <RoleModal
           role={editingRole}
-          // @ts-ignore
+          // @ts-expect-error
           onSave={editingRole ? handleEditRole : handleAddRole}
           onClose={() => {
-            setIsModalOpen(false)
-            setEditingRole(null)
+            setIsModalOpen(false);
+            setEditingRole(null);
           }}
         />
       )}
     </div>
-  )
+  );
 }
 
 interface RoleModalProps {

@@ -60,15 +60,22 @@ const UserManagement = () => {
           </tr>
         </thead>
         <tbody className="text-gray-600 text-sm font-light">
-          {users.map(user => (
-            <tr key={user.id} className="border-b border-gray-200 hover:bg-gray-100">
-              <td className="py-3 px-6 text-left whitespace-nowrap">{user.name}</td>
+          {users.map((user) => (
+            <tr
+              key={user.id}
+              className="border-b border-gray-200 hover:bg-gray-100"
+            >
+              <td className="py-3 px-6 text-left whitespace-nowrap">
+                {user.name}
+              </td>
               <td className="py-3 px-6 text-left">{user.email}</td>
               <td className="py-3 px-6 text-left">{user.role}</td>
               <td className="py-3 px-6 text-left">
                 <span
                   className={`${
-                    user.status === 'Active' ? 'bg-green-200 text-green-600' : 'bg-red-200 text-red-600'
+                    user.status === "Active"
+                      ? "bg-green-200 text-green-600"
+                      : "bg-red-200 text-red-600"
                   } py-1 px-3 rounded-full text-xs`}
                 >
                   {user.status}
@@ -79,8 +86,8 @@ const UserManagement = () => {
                   <button
                     className="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
                     onClick={() => {
-                      setEditingUser(user)
-                      setIsModalOpen(true)
+                      setEditingUser(user);
+                      setIsModalOpen(true);
                     }}
                   >
                     <PencilIcon size={16} />
@@ -100,16 +107,16 @@ const UserManagement = () => {
       {isModalOpen && (
         <UserModal
           user={editingUser}
-          // @ts-ignore
+          // @ts-expect-error
           onSave={editingUser ? handleEditUser : handleAddUser}
           onClose={() => {
-            setIsModalOpen(false)
-            setEditingUser(null)
+            setIsModalOpen(false);
+            setEditingUser(null);
           }}
         />
       )}
     </div>
-  )
+  );
 }
 
 interface UserModalProps {
